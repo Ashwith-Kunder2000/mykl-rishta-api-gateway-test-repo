@@ -7,7 +7,7 @@
     "dev": "nodemon src/server.js"
   },
   "dependencies": {
-    "@Ashwith-Kunder2000/db-core": "1.0.0-dev.0",
+    "@Ashwith-Kunder2000/db-core": "1.0.0-dev.2",
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
     "express": "^4.19.2"
