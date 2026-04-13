@@ -30,6 +30,13 @@ jobs:
             fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
           "
 
+      - name: Debug auth
+        run: |
+          echo "NPM_TOKEN length: ${#NPM_TOKEN}"
+          npm whoami --registry https://npm.pkg.github.com
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Install dependencies
         run: npm install
         env:
