@@ -19,8 +19,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@ashwith-kunder2000'
 
       - name: Update db-core version in package.json
         run: |
@@ -32,10 +30,17 @@ jobs:
             fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
           "
 
+      - name: Debug auth
+        run: |
+          echo "NPM_TOKEN length: ${#NPM_TOKEN}"
+          npm whoami --registry https://npm.pkg.github.com
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Install dependencies
         run: npm install
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Commit updated files
         run: |
